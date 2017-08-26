@@ -1,15 +1,23 @@
 import React from 'react';
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter, Route } from 'react-router-dom';
 //
-import FuncBasedComponent from './FuncBasedComponent';
+import Header from './Header';
+import Home from './Home';
+import Resources from './Resources';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <h2>React simple starter</h2>
-        <FuncBasedComponent/>
+        <BrowserRouter>
+          <div className="container">
+            <Header/>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/resources" component={Resources}/>
+          </div>
+        </BrowserRouter>
       </div>
     );
   }
