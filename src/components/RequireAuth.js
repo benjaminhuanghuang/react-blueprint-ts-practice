@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 
 /**
- *  Sudo code
+ *  Sudo code in other file
  *  import Authentication   // My HOC
  *  import Resources        // Component I want to wrap
  *  
@@ -15,25 +15,29 @@ import { connect } from 'react-redux';
 
 export default function(ComposedComponent) {
   class Authentication extends Component {
-    static contextTypes = {
-      router: React.PropTypes.object
-    }
-
+    // before enter resources page
     componentWillMount() {
       if (!this.props.authenticated) {
-        this.context.router.push('/');
+        console.log("this.context in componentWillMount", this.context);
+        this.context.router.history.push('/');
       }
     }
 
-    componentWillUpdate(nextProps) {
+    // click sign out in resources page
+    componentWillUpdate(nextProps) {   
       if (!nextProps.authenticated) {
-        this.context.router.push('/');
+        this.context.router.history.push('/');
       }
     }
 
     render() {
+      console.log(this.context);
       return <ComposedComponent {...this.props} />
     }
+  }
+
+  Authentication.contextTypes = {
+    router: PropTypes.object
   }
 
   function mapStateToProps(state) {
