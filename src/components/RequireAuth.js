@@ -15,6 +15,7 @@ import PropTypes from 'prop-types';
 
 export default function(ComposedComponent) {
   class Authentication extends Component {
+    
     // before enter resources page
     componentWillMount() {
       if (!this.props.authenticated) {
@@ -31,7 +32,6 @@ export default function(ComposedComponent) {
     }
 
     render() {
-      console.log(this.context);
       return <ComposedComponent {...this.props} />
     }
   }

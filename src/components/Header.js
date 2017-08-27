@@ -25,6 +25,9 @@ class Header extends Component {
               <NavLink to="/resources" activeClassName ="active">Resources</NavLink>
             </li>
             <li className="nav-item">
+              <NavLink to="/users" activeClassName ="active">Users</NavLink>
+            </li>
+            <li className="nav-item">
               {this.renderAuthButton()}
             </li>
           </ul>
