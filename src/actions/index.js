@@ -4,7 +4,8 @@ import {
   AUTH_USER,
   UNAUTH_USER,
   AUTH_ERROR,
-  FETCH_MESSAGE
+  FETCH_MESSAGE,
+  FETCH_USERS
 } from './types';
 
 const ROOT_URL = 'http://localhost:3090';
@@ -99,4 +100,13 @@ export function fetchMessage() {
         });
       });
   }
+}
+
+export function fetchUsers() {
+  const request = axios.get('http://jsonplaceholder.typicode.com/users');
+  
+  return {
+    type: FETCH_USERS,
+    payload: request
+  };
 }
