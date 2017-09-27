@@ -1,2 +1,4 @@
-export const CHANGE_AUTH = 'CHANGE_AUTH';
-export const FETCH_USERS = 'FETCH_USERS';
+export const AUTH_USER = 'auth_user';
+export const UNAUTH_USER = 'unauth_user';
+export const AUTH_ERROR = 'auth_error';
+export const FETCH_MESSAGE = 'fetch_message';
