@@ -16,4 +16,4 @@ export function fetchUsers() {
     type: FETCH_USERS,
     payload: request
   };
-}
+} 
