@@ -29,5 +29,4 @@
 - Auth
 - Redux middleware
 - Redux Hook
-- ESlint config + VS add-in
 
