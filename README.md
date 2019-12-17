@@ -14,7 +14,7 @@
 - Form / validation
 - Async API call
 - Hook
-- 3Party UI Library
+- 3Party UI Library, react-splitter-layout
 - Bootstrap
 
 ## Logs
