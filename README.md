@@ -1,10 +1,22 @@
-# React + Redux + Jest + Enzyme UT application boilerplate
+# React + Redux + UT application boilerplate
 
-## Support ES6
-  No need .babelrc. Put babel settings into package.json
-  
-  Use babel-preset-stage-1 to support syntax:
-  ```
-  const newAction = { ...action, payload: response};
-  ```    
-## 
+
+## Key points
+- Project structure for scalability and maintainability
+- UT
+- Auth / High Order component
+- Router
+- SCSS
+- Form / validation
+- Async API call
+- Middleware
+- Hook
+- 3Party UI Library
+- Bootstrap
+
+
+## Logs
+- 2019.12.17: Upgrade to last version 
+
+
+
