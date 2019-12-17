@@ -2,22 +2,24 @@
 
 
 ## Key points
+- React + Redux + UT **BEST** practices
+- ESLint
 - Project structure for scalability and maintainability
 - Create some reusable commponent 
 - UT
-- Auth / High Order component
-- Router
+- High Order component (Auth)
+- Middleware
+- Router + Redux (History?)
 - SCSS
 - Form / validation
 - Async API call
-- Middleware
 - Hook
 - 3Party UI Library
 - Bootstrap
 
-
 ## Logs
-- 2019.12.17: Upgrade to last version 
+- 2019.12.17: Upgrade to last version, using folder stucture as [5 React Architecture Best Practices]
+
 
 
 

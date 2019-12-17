@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 //
-import * as actions from '../actions';
+import './Header.scss'
 
 class Header extends Component {
 
@@ -39,9 +39,6 @@ class Header extends Component {
                   <NavLink to="/" exact activeClassName ="active">Home</NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/resources" activeClassName ="active">Resources</NavLink>
-                </li>
-                <li className="nav-item">
                   <NavLink to="/users" activeClassName ="active">Users</NavLink>
                 </li>
                 <li className="dropdown">
@@ -68,8 +65,9 @@ class Header extends Component {
     );
   }
 }
-function mapStateToProps(state) {
-  return { authenticated: state.authenticated };
-}
+export default Header;
+// function mapStateToProps(state) {
+//   return { authenticated: state.authenticated };
+// }
 
-export default connect(mapStateToProps, actions)(Header);
+// export default connect(mapStateToProps, actions)(Header);
