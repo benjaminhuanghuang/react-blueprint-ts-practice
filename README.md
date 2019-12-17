@@ -3,6 +3,7 @@
 
 ## Key points
 - Project structure for scalability and maintainability
+- Create some reusable commponent 
 - UT
 - Auth / High Order component
 - Router
