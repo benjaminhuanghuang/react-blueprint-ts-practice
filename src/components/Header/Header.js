@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
 import { connect } from "react-redux";
 //
-import './Header.scss'
+import './Header.scss';
 
 class Header extends Component {
 

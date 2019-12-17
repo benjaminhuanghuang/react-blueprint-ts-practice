@@ -14,7 +14,7 @@
 - Form / validation
 - Async API call
 - Hook
-- 3Party UI Library, react-splitter-layout
+- 3Party UI Library, react-splitter-layougt
 - Bootstrap
 
 ## Logs
@@ -22,4 +22,12 @@
 
 
 
+
+
+## TO DO:
+- UI Style
+- Auth
+- Redux middleware
+- Redux Hook
+- ESlint config + VS add-in
 
