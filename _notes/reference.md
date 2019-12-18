@@ -7,5 +7,4 @@
 -[My Awesome React/Redux Structure]
 -[React and Redux Design Patterns](https://www.learnhowtoprogram.com/react/advanced-topics/react-and-redux-design-patterns)
 
-- https://github.com/gothinkster/react-redux-realworld-example-app
 - https://github.com/ReactTraining/react-router-5-course

@@ -12,6 +12,7 @@ import { AppToaster } from './components/singletons/Toaster';
 import HomeView from "./views/HomeView";
 import UsersView from "./views/UsersView";
 import JobsView from "./views/JobsView";
+import LoginView from "./views/LoginView/LoginView";
 
 export class App extends React.PureComponent {
   constructor(props, context) {
@@ -72,6 +73,7 @@ export class App extends React.PureComponent {
           <Switch>
             <Route path="/users" component={this.wrappedUsersView} />
             <Route path="/jobs" component={this.wrappedJobsView} />
+            <Route path="/login" component={LoginView} />
             <Route component={this.wrappedHomeView} />
           </Switch>
         </div>

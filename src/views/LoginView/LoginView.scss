@@ -1,0 +1,13 @@
+.login-form-view{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  .login-form {
+    width: 300px;
+    height: 200px;
+    border:solid 1px red
+  }
+}
+
