@@ -29,12 +29,12 @@ import './HeaderBar.scss';
 
 const HeaderBar = React.memo(function HeaderBar(props) {
   const { active, capabilities } = props;
+  // React hook for dialogs
   const [aboutDialogOpen, setAboutDialogOpen] = useState(false);
   const [doctorDialogOpen, setDoctorDialogOpen] = useState(false);
-  const [coordinatorDynamicConfigDialogOpen, setCoordinatorDynamicConfigDialogOpen] = useState(
-    false,
-  );
+  const [coordinatorDynamicConfigDialogOpen, setCoordinatorDynamicConfigDialogOpen] = useState(false);
   const [overlordDynamicConfigDialogOpen, setOverlordDynamicConfigDialogOpen] = useState(false);
+  
   const loadDataPrimary = false;
 
   const configMenu = (
@@ -91,7 +91,6 @@ const HeaderBar = React.memo(function HeaderBar(props) {
           intent={loadDataPrimary ? Intent.PRIMARY : Intent.NONE}
           disabled={false} //{!capabilities.hasEverything()}
         />
-
         <NavbarDivider />
         <AnchorButton
           minimal
@@ -147,17 +146,10 @@ const HeaderBar = React.memo(function HeaderBar(props) {
       </NavbarGroup>
       {aboutDialogOpen && <AboutDialog onClose={() => setAboutDialogOpen(false)} />}
       {/* {doctorDialogOpen && <DoctorDialog onClose={() => setDoctorDialogOpen(false)} />} */}
-      {/* {coordinatorDynamicConfigDialogOpen && (
-        <CoordinatorDynamicConfigDialog
-          onClose={() => setCoordinatorDynamicConfigDialogOpen(false)}
-        />
-      )}
-      {overlordDynamicConfigDialogOpen && (
-        <OverlordDynamicConfigDialog onClose={() => setOverlordDynamicConfigDialogOpen(false)} />
-      )} */}
+      {/* {coordinatorDynamicConfigDialogOpen && (<CoordinatorDynamicConfigDialogonClose={() => setCoordinatorDynamicConfigDialogOpen(false)}/>)}
+      {overlordDynamicConfigDialogOpen && (<OverlordDynamicConfigDialog onClose={() => setOverlordDynamicConfigDialogOpen(false)} />)} */}
     </Navbar>
   );
 });
-
 
 export default HeaderBar;

@@ -9,3 +9,11 @@
 ```
     npx eslint -- init
 ```
+
+- Disable some check
+```
+ "rules": {
+    "react/display-name": 'off'
+  },
+  "parser": "babel-eslint"
+```

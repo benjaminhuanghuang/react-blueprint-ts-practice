@@ -1,0 +1,10 @@
+```
+src/
+    components/
+    dialogs/
+    redux/
+    utils/
+    views/
+    App.js
+    Index.js
+```

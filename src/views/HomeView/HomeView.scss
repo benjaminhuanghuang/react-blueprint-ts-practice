@@ -1,0 +1,12 @@
+@import '../../variables';
+
+.home-view {
+  display: grid;
+  gap: $standard-padding;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  & > a {
+    text-decoration: inherit;
+    color: inherit;
+  }
+}
