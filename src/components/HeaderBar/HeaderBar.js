@@ -94,10 +94,10 @@ const HeaderBar = React.memo(function HeaderBar(props) {
         <NavbarDivider />
         <AnchorButton
           minimal
-          active={active === 'ingestion'}
+          active={active === 'jobs'}
           icon={IconNames.GANTT_CHART}
-          text="Ingestion"
-          href="#ingestion"
+          text="Jobs"
+          href="#jobs"
           disabled={false} //{!capabilities.hasSqlOrOverlordAccess()}
         />
         <AnchorButton

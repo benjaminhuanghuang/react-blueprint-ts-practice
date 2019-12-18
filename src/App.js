@@ -10,7 +10,8 @@ import HeaderBar from "./components/HeaderBar";
 import { AppToaster } from './components/singletons/Toaster';
 
 import HomeView from "./views/HomeView";
-import UserView from "./views/UserView";
+import UsersView from "./views/UsersView";
+import JobsView from "./views/JobsView";
 
 export class App extends React.PureComponent {
   constructor(props, context) {
@@ -38,11 +39,19 @@ export class App extends React.PureComponent {
       <HomeView />); //capabilities={capabilities} 
   };
 
-  wrappedUserView = () => {
+  wrappedUsersView = () => {
     // const { capabilities } = this.state;
     return this.wrapInViewContainer(
       'users',
-      <UserView /> //capabilities={capabilities}
+      <UsersView /> //capabilities={capabilities}
+    );
+  };
+
+  wrappedJobsView = () => {
+    // const { capabilities } = this.state;
+    return this.wrapInViewContainer(
+      'jobs',
+      <JobsView /> //capabilities={capabilities}
     );
   };
 
@@ -61,7 +70,8 @@ export class App extends React.PureComponent {
       <HashRouter>
         <div className="app-container">
           <Switch>
-            <Route path="/users" component={this.wrappedUserView} />
+            <Route path="/users" component={this.wrappedUsersView} />
+            <Route path="/jobs" component={this.wrappedJobsView} />
             <Route component={this.wrappedHomeView} />
           </Switch>
         </div>
