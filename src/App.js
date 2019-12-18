@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import classNames from 'classnames';
 import { IconNames } from '@blueprintjs/icons';
 import { Intent } from '@blueprintjs/core';
@@ -58,14 +58,14 @@ export class App extends React.PureComponent {
   
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className="app-container">
           <Switch>
             <Route path="/users" component={this.wrappedUserView} />
             <Route component={this.wrappedHomeView} />
           </Switch>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

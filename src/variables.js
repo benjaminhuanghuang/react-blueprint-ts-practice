@@ -1,6 +1,6 @@
 export const VERSION = '0.0.1';
 
-export const WEBSITE = 'https://';
+export const WEBSITE = 'https://google.com';
 export const GITHUB = 'https://github.com/';
 export const DOCS = `https://github.com/docs/${VERSION}`;
 export const COMMUNITY = 'https://github.com//community/';

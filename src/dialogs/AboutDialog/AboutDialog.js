@@ -10,8 +10,8 @@ import {
   WEBSITE,
 } from '../../variables';
 
-export const AboutDialog = React.memo(function AboutDialog() {
-  const { onClose } = this.props;
+export const AboutDialog = React.memo(function AboutDialog(props) {
+  const { onClose } = props;
 
   return (
     <Dialog
@@ -25,25 +25,20 @@ export const AboutDialog = React.memo(function AboutDialog() {
       <div className={Classes.DIALOG_BODY}>
         <p>
           <strong>
-            Apache Druid (incubating) is a high performance real-time analytics database.
+            This is a project for learning React, Redux
           </strong>
         </p>
         <p>
-          For help and support with Druid, please refer to the{' '}
-          <ExternalLink href={COMMUNITY}>community page</ExternalLink> and the{' '}
-          <ExternalLink href={USER_GROUP}>user groups</ExternalLink>.
-        </p>
-        <p>
-          Druid is made with ❤️ by a community of passionate developers. To contribute, join in the
-          discussion on the{' '}
-          <ExternalLink href={DEVELOPER_GROUP}>developer group</ExternalLink>.
+          For help and support, please refer to the{' '}
+          <ExternalLink href={WEBSITE}>community page</ExternalLink> and the{' '}
+          <ExternalLink href={WEBSITE}>user groups</ExternalLink>.
         </p>
       </div>
       <div className={Classes.DIALOG_FOOTER}>
         <div className={Classes.DIALOG_FOOTER_ACTIONS}>
           <Button onClick={onClose}>Close</Button>
           <AnchorButton intent={Intent.PRIMARY} href={WEBSITE} target="_blank">
-            Visit Druid
+            Visit Github
           </AnchorButton>
         </div>
       </div>
