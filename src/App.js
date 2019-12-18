@@ -1,26 +1,71 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import classNames from 'classnames';
+import { IconNames } from '@blueprintjs/icons';
+import { Intent } from '@blueprintjs/core';
 //
-import Header from "./components/Header";
+import './App.scss';
+//
+import HeaderBar from "./components/HeaderBar";
+import { AppToaster } from './components/singletons/Toaster';
 
-import Home from "./views/Home";
-import UserList from "./views/UserList";
+import HomeView from "./views/HomeView";
+import UserView from "./views/UserView";
 
+export class App extends React.PureComponent {
+  constructor(props, context) {
+    super(props, context);
+  }
 
-function App() {
-  return (
-    <BrowserRouter>
-      <div className="container">
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/users" component={UserList} />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
+  static shownNotifications() {
+    AppToaster.show({
+      icon: IconNames.ERROR,
+      intent: Intent.DANGER,
+      timeout: 120000,
+      message: (
+        <>
+          It appears that the the service serving this console is not responding. The console will
+          not function at the moment
+        </>
+      ),
+    });
+  }
+
+  wrappedHomeView = () => {
+    // const { capabilities } = this.state;
+    return this.wrapInViewContainer(
+      null, 
+      <HomeView />); //capabilities={capabilities} 
+  };
+
+  wrappedUserView = () => {
+    // const { capabilities } = this.state;
+    return this.wrapInViewContainer(
+      'users',
+      <UserView /> //capabilities={capabilities}
+    );
+  };
+
+  wrapInViewContainer = (active, el, classType) => {
+    // const { capabilities } = this.state;
+    return (
+      <>
+        <HeaderBar active={active} />
+        <div className={classNames('view-container', classType)}>{el}</div>
+      </>
+    );
+  }
+  
+  render() {
+    return (
+      <BrowserRouter>
+        <div className="app-container">
+          <Switch>
+            <Route path="/users" component={this.wrappedUserView} />
+            <Route component={this.wrappedHomeView} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
-
-export default App;
