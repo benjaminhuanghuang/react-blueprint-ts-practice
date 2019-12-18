@@ -19,10 +19,11 @@ export class StatusCard extends React.PureComponent {
   }
 
   componentDidMount() {
+    // this.versionQueryManager.runQuery(null);
   }
 
   componentWillUnmount() {
-    this.versionQueryManager.terminate();
+    // this.versionQueryManager.terminate();
   }
 
   handleStatusDialogOpen = () => {

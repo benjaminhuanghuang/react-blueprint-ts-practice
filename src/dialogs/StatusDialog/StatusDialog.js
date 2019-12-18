@@ -15,12 +15,26 @@ export class StatusDialog extends React.PureComponent {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      loading: false,
+      loading: true,
     };
+
+    // this.showStatusQueryManager = new QueryManager({
+    //   processQuery: async () => {
+    //     const resp = await axios.get(`/status`);
+    //     return resp.data;
+    //   },
+    //   onStateChange: ({ result, loading, error }) => {
+    //     this.setState({
+    //       loading,
+    //       response: result,
+    //       error,
+    //     });
+    //   },
+    // });
   }
 
-  componentDidMount()  {
-    
+  componentDidMount() {
+    //this.showStatusQueryManager.runQuery(null);
   }
 
   renderContent() {
@@ -69,7 +83,7 @@ export class StatusDialog extends React.PureComponent {
     return;
   }
 
-  render(){
+  render() {
     const { onClose } = this.props;
 
     return (
