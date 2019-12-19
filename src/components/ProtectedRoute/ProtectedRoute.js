@@ -13,7 +13,9 @@ const ProtectedRoute = ({ component: Component, isAuthed, ...rest }) => (
 )
 
 ProtectedRoute.propTypes = {
-    isAuthed: PropTypes.bool.isRequired
+    isAuthed: PropTypes.bool.isRequired,
+    component: PropTypes.object,
+    location: PropTypes.string
 }
 
 

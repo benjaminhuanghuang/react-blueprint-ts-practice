@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Loader.scss';
 
@@ -38,3 +39,9 @@ export const Loader = React.memo(function Loader(props) {
     </div>
   );
 });
+
+
+Loader.propTypes = {
+  loadingText: PropTypes.string,
+  loading: PropTypes.bool
+}
