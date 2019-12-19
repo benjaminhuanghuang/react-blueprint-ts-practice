@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Card, Elevation, FormGroup, H5, InputGroup, Intent } from "@blueprintjs/core";
 import { IconNames } from '@blueprintjs/icons';
 import validateInput from './LoginValidator';
+import { login } from '../../redux/actions';
 
 
 // import { userPostFetch } from '../redux/actions';
@@ -88,7 +89,5 @@ const mapStateToProps = state => {
   return { auth: state.auth }
 }
 
-const mapDispatchToProps = (dispatch) => {
   
-}
-export default connect(mapStateToProps, null)(LoginView);
+export default connect(mapStateToProps, { login })(LoginView);
