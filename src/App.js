@@ -7,6 +7,8 @@ import { Intent } from '@blueprintjs/core';
 import './App.scss';
 //
 import HeaderBar from "./components/HeaderBar";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+
 import { AppToaster } from './components/singletons/Toaster';
 
 import HomeView from "./views/HomeView";
@@ -71,10 +73,10 @@ export class App extends React.PureComponent {
       <HashRouter>
         <div className="app-container">
           <Switch>
-            <Route path="/users" component={this.wrappedUsersView} />
-            <Route path="/jobs" component={this.wrappedJobsView} />
+            <PrivateRoute path="/users" component={this.wrappedUsersView} />
+            <PrivateRoute path="/jobs" component={this.wrappedJobsView} />
             <Route path="/login" component={LoginView} />
-            <Route component={this.wrappedHomeView} />
+            <PrivateRoute path="/" component={this.wrappedHomeView} />
           </Switch>
         </div>
       </HashRouter>
