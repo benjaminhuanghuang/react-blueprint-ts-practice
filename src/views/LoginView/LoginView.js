@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { FormGroup, H5, InputGroup, Intent, Switch } from "@blueprintjs/core";
+import { IconNames } from '@blueprintjs/icons';
+
 
 // import { userPostFetch } from '../redux/actions';
 import "./LoginView.scss";
@@ -25,22 +27,23 @@ class LoginView extends PureComponent {
         <div className="login-form">
           <H5>Login</H5>
           <FormGroup
-            helperText={"User name"}
             inline={true}
-            label="Label"
-            labelFor="text-input"
-            labelInfo="(required)"
+            label="User name: "
+            labelFor="username"
+            // labelInfo="(required)"
+            // helperText="User name"
           >
-            <InputGroup id="password" placeholder="User name" />
+            <InputGroup id="username" placeholder="User name" leftIcon={IconNames.USER} fill={true}/>
           </FormGroup>
           <FormGroup
-            helperText={"Password"}
             inline={true}
-            label="Password"
-            labelFor="text-input"
-            labelInfo="(required)"
+            label="Password: "
+            labelFor="password"
+            className="right"
+            // labelInfo="(required)"
+            //helperText="Password"
           >
-            <InputGroup id="password" placeholder="Password" />
+            <InputGroup id="password" placeholder="Password" type="password" leftIcon={IconNames.KEY}/>
           </FormGroup>
         </div>
       </div>
