@@ -34,35 +34,28 @@ const HeaderBar = React.memo(function HeaderBar(props) {
   const [doctorDialogOpen, setDoctorDialogOpen] = useState(false);
   const [coordinatorDynamicConfigDialogOpen, setCoordinatorDynamicConfigDialogOpen] = useState(false);
   const [overlordDynamicConfigDialogOpen, setOverlordDynamicConfigDialogOpen] = useState(false);
-  
+
   const loadDataPrimary = false;
 
   const configMenu = (
     <Menu>
       <MenuItem
         icon={IconNames.PULSE}
-        text="Druid Doctor"
-        onClick={() => setDoctorDialogOpen(true)}
-        disabled={false} //{!capabilities.hasEverything()}
+        text="User profile"
       />
       <MenuItem
         icon={IconNames.SETTINGS}
-        text="Coordinator dynamic config"
-        onClick={() => setCoordinatorDynamicConfigDialogOpen(true)}
-        disabled={false} //{!capabilities.hasCoordinatorAccess()}
+        text="Settings..."
       />
       <MenuItem
         icon={IconNames.WRENCH}
-        text="Overlord dynamic config"
-        onClick={() => setOverlordDynamicConfigDialogOpen(true)}
-        disabled={false} //{!capabilities.hasOverlordAccess()}
+        text="To do..."
       />
       <MenuItem
-        icon={IconNames.PROPERTIES}
-        active={active === 'lookups'}
-        text="Lookups"
-        href="#lookups"
-        disabled={false} //{!capabilities.hasCoordinatorAccess()}
+        icon={IconNames.LOG_OUT}
+        text="Log out"
+        href="#login"
+        onClick={() => setOverlordDynamicConfigDialogOpen(true)}
       />
     </Menu>
   );
@@ -72,7 +65,7 @@ const HeaderBar = React.memo(function HeaderBar(props) {
       <MenuItem icon={IconNames.GRAPH} text="About" onClick={() => setAboutDialogOpen(true)} />
       <MenuItem icon={IconNames.TH} text="Docs" href={USER_GROUP} target="_blank" />
       <MenuItem icon={IconNames.USER} text="User group" href={USER_GROUP} target="_blank" />
-      <MenuItem icon={IconNames.CHAT} text="ASF Slack channel" href={USER_GROUP} target="_blank"/>
+      <MenuItem icon={IconNames.CHAT} text="ASF Slack channel" href={USER_GROUP} target="_blank" />
       <MenuItem icon={IconNames.GIT_BRANCH} text="GitHub" href={USER_GROUP} target="_blank" />
     </Menu>
   );
@@ -80,7 +73,7 @@ const HeaderBar = React.memo(function HeaderBar(props) {
   return (
     <Navbar className="header-bar">
       <NavbarGroup align={Alignment.LEFT}>
-        <a href="#"> <img src={logo} className="app-logo"/> </a>
+        <a href="#"> <img src={logo} className="app-logo" /> </a>
         <NavbarDivider />
         <AnchorButton
           icon={IconNames.USER}
