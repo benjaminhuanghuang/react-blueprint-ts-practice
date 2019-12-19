@@ -73,8 +73,7 @@ const tokenConfig = (getState) => {
   const token = getState().auth.token;
   const config = {
     headers: {
-      "Content-type": "application/json",
-      "Access-Control-Request-Headers": "authorization"
+      "Content-type": "application/json"
     }
   }
   if (token) {

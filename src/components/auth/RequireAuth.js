@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 /**
+ *  https://www.youtube.com/watch?v=q5OmQvh4R3s
  *  Sudo code in other file
  *  import Authentication   // My HOC
  *  import Resources        // Component I want to wrap
@@ -18,7 +19,7 @@ export default function(ComposedComponent) {
     
     // before enter resources page
     componentWillMount() {
-      if (!this.props.authenticated) {
+      if (!this.props.isAuthed) {
         console.log("this.context in componentWillMount", this.context);
         this.context.router.history.push('/');
       }
@@ -26,7 +27,7 @@ export default function(ComposedComponent) {
 
     // click sign out in resources page
     componentWillUpdate(nextProps) {   
-      if (!nextProps.authenticated) {
+      if (!nextProps.isAuthed) {
         this.context.router.history.push('/');
       }
     }
@@ -36,12 +37,16 @@ export default function(ComposedComponent) {
     }
   }
 
+  Authentication.propTypes = {
+    isAuthed : PropTypes.bool.isRequired
+  }
+  
   Authentication.contextTypes = {
     router: PropTypes.object
   }
 
   function mapStateToProps(state) {
-    return { authenticated: state.authenticated };
+    return { isAuthed: state.auth.isAuthed };
   }
 
   return connect(mapStateToProps)(Authentication);

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import classNames from 'classnames';
 import { IconNames } from '@blueprintjs/icons';
@@ -7,7 +9,7 @@ import { Intent } from '@blueprintjs/core';
 import './App.scss';
 //
 import HeaderBar from "./components/HeaderBar";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 import { AppToaster } from './components/singletons/Toaster';
 
@@ -15,18 +17,13 @@ import HomeView from "./views/HomeView";
 import UsersView from "./views/UsersView";
 import JobsView from "./views/JobsView";
 import LoginView from "./views/LoginView/LoginView";
-import { store} from './redux/store';
-import {loadUser} from './redux/actions/';
+import { Loader } from './components/Loader/Loader';
 
-export class App extends React.PureComponent {
+class App extends React.PureComponent {
   constructor(props, context) {
     super(props, context);
   }
 
-  componentDidMount() {
-    // load auth token from local storage
-    store.dispatch(loadUser());
-  }
   static shownNotifications() {
     AppToaster.show({
       icon: IconNames.ERROR,
@@ -75,17 +72,32 @@ export class App extends React.PureComponent {
   }
   
   render() {
+    if (this.props.isAuthLoading)
+    {
+      return <Loader loadingText="Hello...." loading />
+    } 
+
     return (
       <HashRouter>
         <div className="app-container">
           <Switch>
-            <PrivateRoute path="/users" component={this.wrappedUsersView} />
-            <PrivateRoute path="/jobs" component={this.wrappedJobsView} />
+            <ProtectedRoute exact path="/" component={this.wrappedHomeView} />
+            <ProtectedRoute path="/users" component={this.wrappedUsersView} />
+            <ProtectedRoute path="/jobs" component={this.wrappedJobsView} />
             <Route path="/login" component={LoginView} />
-            <PrivateRoute path="/" component={this.wrappedHomeView} />
           </Switch>
         </div>
       </HashRouter>
     );
   }
 }
+
+App.propTypes = {
+  isAuthLoading: PropTypes.bool.isRequired
+}
+
+const mapStateToProps = state => {
+  return { isAuthLoading: state.auth.isLoading }
+}
+
+export default connect(mapStateToProps)(App);

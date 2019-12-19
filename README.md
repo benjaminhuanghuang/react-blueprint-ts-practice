@@ -25,8 +25,16 @@
 
 
 ## TO DO:
-- UI Style
-- Auth
+- UI Style   [x]
+
+- Auth 
+  - Redux                     [x]
+  - Login                     [x]
+  - Protected Router          [x]
+  - Redirect after Login  
+  - Logout            
+  
 - Redux middleware
 - Redux Hook
+- componentWillMount() ???
 
