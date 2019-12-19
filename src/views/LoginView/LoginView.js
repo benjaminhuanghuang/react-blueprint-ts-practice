@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, H5, InputGroup, Intent, Switch } from "@blueprintjs/core";
+import { Button, Card, Elevation, FormGroup, H5, InputGroup } from "@blueprintjs/core";
 import { IconNames } from '@blueprintjs/icons';
 
 
@@ -24,28 +24,31 @@ class LoginView extends PureComponent {
   render() {
     return (
       <div className="login-form-view">
-        <div className="login-form">
+        <Card interactive={true} elevation={Elevation.FOUR}>
           <H5>Login</H5>
           <FormGroup
             inline={true}
             label="User name: "
             labelFor="username"
-            // labelInfo="(required)"
-            // helperText="User name"
+          // labelInfo="(required)"
+          // helperText="User name"
           >
-            <InputGroup id="username" placeholder="User name" leftIcon={IconNames.USER} fill={true}/>
+            <InputGroup id="username" placeholder="User name" leftIcon={IconNames.USER} fill={true} />
           </FormGroup>
           <FormGroup
             inline={true}
             label="Password: "
             labelFor="password"
             className="right"
-            // labelInfo="(required)"
-            //helperText="Password"
+          // labelInfo="(required)"
+          //helperText="Password"
           >
-            <InputGroup id="password" placeholder="Password" type="password" leftIcon={IconNames.KEY}/>
+            <InputGroup id="password" placeholder="Password" type="password" leftIcon={IconNames.KEY} />
           </FormGroup>
-        </div>
+          <FormGroup>
+            <Button rightIcon={IconNames.LOG_IN} fill>Login</Button>
+          </FormGroup>
+        </Card>
       </div>
     )
   }
