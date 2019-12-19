@@ -8,17 +8,32 @@ import { IconNames } from '@blueprintjs/icons';
 import "./LoginView.scss";
 
 class LoginView extends PureComponent {
-  state = {
-    username: "",
-    password: "",
-    avatar: "",
-    bio: ""
-  }
+  constructor(props) {
+    super(props);
+
+    // reset login status
+    this.props.logout();
+
+    this.state = {
+        username: '',
+        password: '',
+        submitted: false
+    };
+}
 
   handleChange = event => {
+    const { name, value } = event.target;
+        this.setState({ [name]: value });
   }
 
   handleSubmit = event => {
+    e.preventDefault();
+
+    this.setState({ submitted: true });
+    const { username, password } = this.state;
+    if (username && password) {
+        this.props.login(username, password);
+    }
   }
 
   render() {
@@ -54,10 +69,15 @@ class LoginView extends PureComponent {
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
-// })
+function mapState(state) {
+  const { loggingIn } = state.authentication;
+  return { loggingIn };
+}
 
+const actionCreators = {
+  login: userActions.login,
+  logout: userActions.logout
+};
 // export default connect(null, mapDispatchToProps)(LoginView);
 
 export default LoginView;
