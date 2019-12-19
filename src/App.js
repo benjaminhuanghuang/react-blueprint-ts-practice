@@ -15,12 +15,18 @@ import HomeView from "./views/HomeView";
 import UsersView from "./views/UsersView";
 import JobsView from "./views/JobsView";
 import LoginView from "./views/LoginView/LoginView";
+import { store} from './redux/store';
+import {loadUser} from './redux/actions/';
 
 export class App extends React.PureComponent {
   constructor(props, context) {
     super(props, context);
   }
 
+  componentDidMount() {
+    // load auth token from local storage
+    store.dispatch(loadUser());
+  }
   static shownNotifications() {
     AppToaster.show({
       icon: IconNames.ERROR,

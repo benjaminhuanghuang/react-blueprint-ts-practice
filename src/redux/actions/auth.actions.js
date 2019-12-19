@@ -1,93 +1,81 @@
-import { userService } from '../_services';
-import { alertActions } from './';
+import axios from 'axios';
+import config from './config';
 
-export const userActions = {
-    login,
-    logout,
-    register,
-    getAll,
-    delete: _delete
-};
+import { returnErrors } from './error.actions';
 
-function login(username, password) {
-    return dispatch => {
-        dispatch(request({ username }));
-
-        userService.login(username, password)
-            .then(
-                user => { 
-                    dispatch(success(user));
-                    history.push('/');
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
-                }
-            );
-    };
-
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
-    function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+export const signup = ({username, password}) => dispatch => {
+  const body = JSON.stringify({username, password});
+  const config = {
+    headers:{
+      "Content-type": "application/json"
+    }
+  }
+  axios.post("api/user", body, config)
+  .then(res =>{
+    dispatch({
+      type: 'SIGNUP_SUCCESS'
+    })
+  })
 }
 
-function logout() {
-    userService.logout();
-    return { type: userConstants.LOGOUT };
+export const login = ({ username, password }) => dispatch => {
+  const body = JSON.stringify({
+    username,
+    password,
+    grantType: "password",
+    clientName: "RLaX",
+  });
+
+  const config = {
+    headers:{
+      "Content-type": "application/json"
+    }
+  }
+  axios.post(config.authApiUrl + 'token', body, config)
+  .then(res =>{
+    dispatch({
+      type: 'LOGIN_SUCCESS',
+      payload: res.data
+    })
+  })
+  .catch(err=>{
+    dispatch(returnErrors(err.response.data, err.response.status, 'Login failed'))
+    dispatch({
+      type: 'LOGIN_FAILED'
+    })
+  });
 }
 
-function register(user) {
-    return dispatch => {
-        dispatch(request(user));
-
-        userService.register(user)
-            .then(
-                user => { 
-                    dispatch(success());
-                    history.push('/login');
-                    dispatch(alertActions.success('Registration successful'));
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                    dispatch(alertActions.error(error.toString()));
-                }
-            );
-    };
-
-    function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
-    function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
-    function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+export const logout = () => {
+  return {
+    type: 'LOGOUT'
+  }
 }
 
-function getAll() {
-    return dispatch => {
-        dispatch(request());
-
-        userService.getAll()
-            .then(
-                users => dispatch(success(users)),
-                error => dispatch(failure(error.toString()))
-            );
-    };
-
-    function request() { return { type: userConstants.GETALL_REQUEST } }
-    function success(users) { return { type: userConstants.GETALL_SUCCESS, users } }
-    function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
+export const loadUser = () => (dispatch, getState) => {
+  dispatch({ type: 'USER_LOADING' });
+  const config = tokenConfig(getState)
+  axios.get(config.authApiUrl + 'user', config)
+    .then(res => dispatch({
+      type: 'USER_LOADED',
+      paylod: res.data
+    }))
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({ type: 'AUTH_ERROR' })
+    });
 }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    return dispatch => {
-        dispatch(request(id));
 
-        userService.delete(id)
-            .then(
-                user => dispatch(success(id)),
-                error => dispatch(failure(id, error.toString()))
-            );
-    };
-
-    function request(id) { return { type: userConstants.DELETE_REQUEST, id } }
-    function success(id) { return { type: userConstants.DELETE_SUCCESS, id } }
-    function failure(id, error) { return { type: userConstants.DELETE_FAILURE, id, error } }
+const tokenConfig = (getState) => {
+  const token = getState().auth.token;
+  const config = {
+    headers: {
+      "Content-type": "application/json"
+    }
+  }
+  if (token) {
+    config.headers['Authorization'] = "Bearer " + token;
+  }
+  return config;
 }

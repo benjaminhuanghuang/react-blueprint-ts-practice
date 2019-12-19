@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, Elevation, FormGroup, H5, InputGroup } from "@blueprintjs/core";
+import { Button, Card, Elevation, FormGroup, H5, InputGroup, Intent } from "@blueprintjs/core";
 import { IconNames } from '@blueprintjs/icons';
+import validateInput from './LoginValidator';
 
 
 // import { userPostFetch } from '../redux/actions';
@@ -12,31 +13,43 @@ class LoginView extends PureComponent {
     super(props);
 
     // reset login status
-    this.props.logout();
+    //this.props.dispatch({ type: '', username, password });
 
     this.state = {
-        username: '',
-        password: '',
-        submitted: false
+      username: '',
+      password: '',
+      errors: {},
+      isLoading: false
     };
-}
-
-  handleChange = event => {
-    const { name, value } = event.target;
-        this.setState({ [name]: value });
   }
 
-  handleSubmit = event => {
-    e.preventDefault();
+  isValid = () => {
+    const { errors, isValid } = validateInput(this.state);
+    this.setState({ errors });
+    return isValid;
+  }
 
-    this.setState({ submitted: true });
-    const { username, password } = this.state;
-    if (username && password) {
-        this.props.login(username, password);
+  onChange = event => {
+    const { id, value } = event.target;
+    this.setState({ [id]: value });
+  }
+
+  onSubmit = event => {
+    event.preventDefault();
+    if (this.isValid()) {
+      this.setState({errors:{}, isLoading:true});
+
+      const user = {
+        username: this.state.username,
+        password: this.state.password
+      }
+      this.props.login(user);
     }
   }
 
   render() {
+    const { errors, username, password, isLoading } = this.state;
+
     return (
       <div className="login-form-view">
         <Card interactive={true} elevation={Elevation.FOUR}>
@@ -45,23 +58,25 @@ class LoginView extends PureComponent {
             inline={true}
             label="User name: "
             labelFor="username"
-          // labelInfo="(required)"
-          // helperText="User name"
+            // labelInfo="(required)"
+            intent={Intent.DANGER}
+            helperText={errors.username}
           >
-            <InputGroup id="username" placeholder="User name" leftIcon={IconNames.USER} fill={true} />
+            <InputGroup id="username" placeholder="User name" leftIcon={IconNames.USER} fill={true} onChange={this.onChange} />
           </FormGroup>
           <FormGroup
             inline={true}
             label="Password: "
             labelFor="password"
             className="right"
-          // labelInfo="(required)"
-          //helperText="Password"
+            // labelInfo="(required)"
+            intent={Intent.DANGER}
+            helperText={errors.password}
           >
-            <InputGroup id="password" placeholder="Password" type="password" leftIcon={IconNames.KEY} />
+            <InputGroup id="password" placeholder="Password" type="password" leftIcon={IconNames.KEY} onChange={this.onChange} />
           </FormGroup>
           <FormGroup>
-            <Button rightIcon={IconNames.LOG_IN} fill>Login</Button>
+            <Button rightIcon={IconNames.LOG_IN} fill onClick={this.onSubmit}>Login</Button>
           </FormGroup>
         </Card>
       </div>
@@ -69,15 +84,11 @@ class LoginView extends PureComponent {
   }
 }
 
-function mapState(state) {
-  const { loggingIn } = state.authentication;
-  return { loggingIn };
+const mapStateToProps = state => {
+  return { auth: state.auth }
 }
 
-const actionCreators = {
-  login: userActions.login,
-  logout: userActions.logout
-};
-// export default connect(null, mapDispatchToProps)(LoginView);
-
-export default LoginView;
+const mapDispatchToProps = (dispatch) => {
+  
+}
+export default connect(mapStateToProps, null)(LoginView);

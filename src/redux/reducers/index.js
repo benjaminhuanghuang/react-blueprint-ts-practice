@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import { auth } from './auth.reducer';
-import { singup } from './signup.reducer';
+import { error } from './error.reducer';
 
 const rootReducer = combineReducers({
   auth,
-  singup,
+  error,
  });
 
 export default rootReducer;
