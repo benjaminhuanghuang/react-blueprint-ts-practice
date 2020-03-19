@@ -1,3 +1,12 @@
+#  Sass 
+This feature is available with react-scripts@2.0.0 and higher.
+-[Adding a Sass Stylesheet](https://create-react-app.dev/docs/adding-a-sass-stylesheet/)
+
+Install
+```
+ npm install node-sass -D
+```
+
 ## Import file
 ```
   @import "path/filename.scss";

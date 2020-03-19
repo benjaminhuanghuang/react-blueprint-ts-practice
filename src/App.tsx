@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { HashRouter, Route, Switch } from "react-router-dom";
 import classNames from "classnames";
@@ -16,7 +15,6 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { AppToaster } from "./singletons";
 
 import { Capabilities } from "./utils";
-
 
 export interface AppProps {
   exampleManifestsUrl?: string;
@@ -78,7 +76,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
     const { capabilities } = this.state;
     return (
       <>
-        <HeaderBar active={active} capabilities={capabilities}/>
+        <HeaderBar active={active} capabilities={capabilities} />
         <div className={classNames("view-container", classType)}>{el}</div>
       </>
     );
