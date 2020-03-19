@@ -18,6 +18,8 @@ import { IconNames } from '@blueprintjs/icons';
 import logo from '../../logo.svg';
 //
 import { AboutDialog } from '../../dialogs';
+import { Capabilities } from '../../utils';
+
 import {
   COMMUNITY,
   DEVELOPER_GROUP,
@@ -27,7 +29,25 @@ import {
 //
 import './HeaderBar.scss';
 
-export const HeaderBar = React.memo(function HeaderBar(props) {
+export type HeaderActiveTab =
+  | null
+  | 'load-data'
+  | 'ingestion'
+  | 'datasources'
+  | 'segments'
+  | 'services'
+  | 'query'
+  | 'lookups'
+  | 'users'
+  | 'jobs';
+
+
+export interface HeaderBarProps {
+  active: HeaderActiveTab;
+  capabilities: Capabilities;
+}
+
+export const HeaderBar = React.memo(function HeaderBar(props: HeaderBarProps) {
   const { active, capabilities } = props;
   // React hook for dialogs
   const [aboutDialogOpen, setAboutDialogOpen] = useState(false);

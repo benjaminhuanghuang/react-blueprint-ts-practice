@@ -1,8 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {userPostFetch} from '../redux/actions';
+// import {userPostFetch} from '../../redux/actions';
 
-class Signup extends Component {
+
+interface SignupViewProps {}
+
+interface SignupViewState {
+  username: string;
+  password: string;
+  avatar: string;
+  bio: string;
+}
+
+
+export class SignupView extends Component {
   state = {
     username: "",
     password: "",
@@ -10,15 +21,15 @@ class Signup extends Component {
     bio: ""
   }
 
-  handleChange = event => {
+  handleChange = (event:any) => {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event:any) => {
     event.preventDefault()
-    this.props.userPostFetch(this.state)
+    // this.props.userPostFetch(this.state)
   }
 
   render() {
@@ -65,8 +76,8 @@ class Signup extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
-})
+// const mapDispatchToProps = (dispatch: any) => ({
+//   userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
+// })
 
-export default connect(null, mapDispatchToProps)(Signup);
+// export  connect(null, mapDispatchToProps)(SignupView);

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default () => {
+export const UsersView =  () => {
   return (
     <div>
       User List

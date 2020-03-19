@@ -4,8 +4,18 @@ import React, { ReactNode } from 'react';
 
 import './HomeViewCard.scss';
 
+export interface HomeViewCardProps {
+  className: string;
+  onClick?: () => void;
+  href?: string;
+  icon: IconName;
+  title: string;
+  loading: boolean;
+  error: string | undefined;
+  children?: ReactNode;
+}
 
-export const HomeViewCard = React.memo(function HomeViewCard(props) {
+export const HomeViewCard = React.memo(function HomeViewCard(props: HomeViewCardProps) {
   const { className, onClick, href, icon, title, loading, error, children } = props;
 
   return (

@@ -2,7 +2,7 @@ import { IconNames } from '@blueprintjs/icons';
 import React from 'react';
 
 import { LocalStorageKeys } from '../../utils';
-import { TimedButton } from '../timed-button/timed-button';
+import { TimedButton } from '../time-button/TimedButton';
 
 export interface RefreshButtonProps {
   onRefresh: (auto: boolean) => void;

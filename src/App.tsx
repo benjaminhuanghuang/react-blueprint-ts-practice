@@ -1,19 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { HashRouter, Route, Switch } from 'react-router-dom';
-import classNames from 'classnames';
-import { IconNames } from '@blueprintjs/icons';
-import { Intent } from '@blueprintjs/core';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { HashRouter, Route, Switch } from "react-router-dom";
+import classNames from "classnames";
+import { IconNames } from "@blueprintjs/icons";
+import { Intent } from "@blueprintjs/core";
 //
-import './App.scss';
+import "./App.scss";
 //
-import {HeaderBar, Loader} from "./components";
+import { HeaderActiveTab, HeaderBar, Loader } from "./components";
+import { HomeView, UsersView, JobsView, LoginView } from "./views";
+
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
-import { AppToaster } from './singletons';
+import { AppToaster } from "./singletons";
 
-import { Capabilities } from './utils';
+import { Capabilities } from "./utils";
 
 
 export interface AppProps {
@@ -25,13 +27,7 @@ export interface AppState {
   capabilitiesLoading: boolean;
 }
 
-import {HomeView
-  UsersView
-  JobsView
-  LoginView
-} from "./views";
-
-class App extends React.PureComponent<AppProps, AppState > {
+export default class App extends React.PureComponent<AppProps, AppState> {
   constructor(props: AppProps, context: any) {
     super(props, context);
   }
@@ -43,24 +39,25 @@ class App extends React.PureComponent<AppProps, AppState > {
       timeout: 120000,
       message: (
         <>
-          It appears that the the service serving this console is not responding. The console will
-          not function at the moment
+          It appears that the the service serving this console is not
+          responding. The console will not function at the moment
         </>
-      ),
+      )
     });
   }
 
   wrappedHomeView = () => {
-    // const { capabilities } = this.state;
+    const { capabilities } = this.state;
     return this.wrapInViewContainer(
-      null, 
-      <HomeView />); //capabilities={capabilities} 
+      null,
+      <HomeView capabilities={capabilities} />
+    );
   };
 
   wrappedUsersView = () => {
     // const { capabilities } = this.state;
     return this.wrapInViewContainer(
-      'users',
+      "users",
       <UsersView /> //capabilities={capabilities}
     );
   };
@@ -68,30 +65,29 @@ class App extends React.PureComponent<AppProps, AppState > {
   wrappedJobsView = () => {
     // const { capabilities } = this.state;
     return this.wrapInViewContainer(
-      'jobs',
+      "jobs",
       <JobsView /> //capabilities={capabilities}
     );
   };
 
   wrapInViewContainer = (
-    ctive: HeaderActiveTab,
+    active: HeaderActiveTab,
     el: JSX.Element,
-    classType: 'normal' | 'narrow-pad' = 'normal',
+    classType: "normal" | "narrow-pad" = "normal"
   ) => {
-    // const { capabilities } = this.state;
+    const { capabilities } = this.state;
     return (
       <>
-        <HeaderBar active={active} />
-        <div className={classNames('view-container', classType)}>{el}</div>
+        <HeaderBar active={active} capabilities={capabilities}/>
+        <div className={classNames("view-container", classType)}>{el}</div>
       </>
     );
-  }
-  
+  };
+
   render() {
-    if (this.props.isAuthLoading)
-    {
-      return <Loader loadingText="Hello...." loading />
-    } 
+    // if (this.props.isAuthLoading) {
+    //   return <Loader loadingText="Hello...." loading />;
+    // }
 
     return (
       <HashRouter>
@@ -108,9 +104,8 @@ class App extends React.PureComponent<AppProps, AppState > {
   }
 }
 
+// const mapStateToProps = state => {
+//   return { isAuthLoading: state.auth.isLoading };
+// };
 
-const mapStateToProps = state => {
-  return { isAuthLoading: state.auth.isLoading }
-}
-
-export default connect(mapStateToProps)(App);
+// export default connect(mapStateToProps)(App);

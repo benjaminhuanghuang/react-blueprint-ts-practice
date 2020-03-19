@@ -1,4 +1,3 @@
 export * from './header-bar/HeaderBar';
 export * from './loader/Loader';
-
-export * from './loader/ExternalLink';
+export * from './external-link/ExternalLink';

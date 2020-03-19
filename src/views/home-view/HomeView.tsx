@@ -1,10 +1,16 @@
 import React from 'react';
-
+import { Capabilities } from '../../utils';
 import { StatusCard } from './status-card/StatusCard';
 
 import './HomeView.scss';
 
-const HomeView = (props) => {
+export interface HomeViewProps {
+  capabilities: Capabilities;
+}
+
+export const HomeView = React.memo(function HomeView(props: HomeViewProps) {
+  const { capabilities } = props;
+  
   return (
     <div className="home-view app-view">
       <StatusCard />
@@ -15,6 +21,4 @@ const HomeView = (props) => {
       <StatusCard />
     </div>
   );
-};
-
-export default HomeView;
+});

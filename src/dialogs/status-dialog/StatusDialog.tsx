@@ -4,15 +4,34 @@ import axios from 'axios';
 import React from 'react';
 import ReactTable, { Filter } from 'react-table';
 
-import { Loader } from '../../components/Loader/Loader';
-import { UrlBaser } from '../../utils/UrlBaser';
+import { Loader } from '../../components/';
+import { UrlBaser } from '../../singletons';
 
 
 import './StatusDialog.scss';
 
 
-export class StatusDialog extends React.PureComponent {
-  constructor(props, context) {
+interface StatusResponse {
+  version: string;
+  modules: any[];
+}
+
+interface StatusDialogProps {
+  onClose: () => void;
+}
+
+interface StatusDialogState {
+  response?: StatusResponse;
+  loading: boolean;
+  error?: string;
+}
+
+export class StatusDialog extends React.PureComponent<StatusDialogProps, StatusDialogState> {
+  static anywhereMatcher(filter: Filter, row: any) {
+    return String(row[filter.id]).includes(filter.value);
+  }
+  
+  constructor(props: StatusDialogProps, context: any) {
     super(props, context);
     this.state = {
       loading: true,
