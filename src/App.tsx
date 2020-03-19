@@ -8,19 +8,31 @@ import { Intent } from '@blueprintjs/core';
 //
 import './App.scss';
 //
-import HeaderBar from "./components/HeaderBar";
+import {HeaderBar, Loader} from "./components";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
-import { AppToaster } from './components/singletons/Toaster';
+import { AppToaster } from './singletons';
 
-import HomeView from "./views/HomeView";
-import UsersView from "./views/UsersView";
-import JobsView from "./views/JobsView";
-import LoginView from "./views/LoginView/LoginView";
-import { Loader } from './components/Loader/Loader';
+import { Capabilities } from './utils';
 
-class App extends React.PureComponent {
-  constructor(props, context) {
+
+export interface AppProps {
+  exampleManifestsUrl?: string;
+}
+
+export interface AppState {
+  capabilities: Capabilities;
+  capabilitiesLoading: boolean;
+}
+
+import {HomeView
+  UsersView
+  JobsView
+  LoginView
+} from "./views";
+
+class App extends React.PureComponent<AppProps, AppState > {
+  constructor(props: AppProps, context: any) {
     super(props, context);
   }
 
@@ -61,7 +73,11 @@ class App extends React.PureComponent {
     );
   };
 
-  wrapInViewContainer = (active, el, classType) => {
+  wrapInViewContainer = (
+    ctive: HeaderActiveTab,
+    el: JSX.Element,
+    classType: 'normal' | 'narrow-pad' = 'normal',
+  ) => {
     // const { capabilities } = this.state;
     return (
       <>
@@ -92,9 +108,6 @@ class App extends React.PureComponent {
   }
 }
 
-App.propTypes = {
-  isAuthLoading: PropTypes.bool.isRequired
-}
 
 const mapStateToProps = state => {
   return { isAuthLoading: state.auth.isLoading }

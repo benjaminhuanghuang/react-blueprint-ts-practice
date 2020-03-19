@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StatusCard } from './StatusCard/StatusCard';
+import { StatusCard } from './status-card/StatusCard';
 
 import './HomeView.scss';
 

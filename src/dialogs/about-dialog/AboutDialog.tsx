@@ -2,7 +2,7 @@ import { AnchorButton, Button, Classes, Dialog, Intent } from '@blueprintjs/core
 import { IconNames } from '@blueprintjs/icons';
 import React from 'react';
 
-import { ExternalLink } from '../../components/ExternalLink';
+import { ExternalLink } from '../../components';
 import {
   COMMUNITY,
   DEVELOPER_GROUP,
@@ -10,7 +10,12 @@ import {
   WEBSITE,
 } from '../../variables';
 
-export const AboutDialog = React.memo(function AboutDialog(props) {
+
+export interface AboutDialogProps {
+  onClose: () => void;
+}
+
+export const AboutDialog = React.memo(function AboutDialog(props:AboutDialogProps) {
   const { onClose } = props;
 
   return (

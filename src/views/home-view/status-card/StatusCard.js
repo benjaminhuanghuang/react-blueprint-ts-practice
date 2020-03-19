@@ -3,7 +3,7 @@ import { IconNames } from '@blueprintjs/icons';
 import axios from 'axios';
 import React from 'react';
 
-import { StatusDialog } from '../../../dialogs/StatusDialog/StatusDialog';
+import { StatusDialog } from '../../../dialogs/StatusDialog';
 import { HomeViewCard } from '../HomeViewCard/HomeViewCard';
 
 

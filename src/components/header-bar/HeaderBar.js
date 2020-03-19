@@ -17,7 +17,7 @@ import { IconNames } from '@blueprintjs/icons';
 // 
 import logo from '../../logo.svg';
 //
-import { AboutDialog } from '../../dialogs/AboutDialog';
+import { AboutDialog } from '../../dialogs';
 import {
   COMMUNITY,
   DEVELOPER_GROUP,
@@ -27,7 +27,7 @@ import {
 //
 import './HeaderBar.scss';
 
-const HeaderBar = React.memo(function HeaderBar(props) {
+export const HeaderBar = React.memo(function HeaderBar(props) {
   const { active, capabilities } = props;
   // React hook for dialogs
   const [aboutDialogOpen, setAboutDialogOpen] = useState(false);
@@ -144,5 +144,3 @@ const HeaderBar = React.memo(function HeaderBar(props) {
     </Navbar>
   );
 });
-
-export default HeaderBar;

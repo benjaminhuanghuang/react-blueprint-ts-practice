@@ -4,6 +4,10 @@ import React from 'react';
 import { LocalStorageKeys } from '../../utils';
 import { TimedButton } from '../timed-button/timed-button';
 
+export interface RefreshButtonProps {
+  onRefresh: (auto: boolean) => void;
+  localStorageKey?: LocalStorageKeys;
+}
 
 export const RefreshButton = React.memo(function RefreshButton(props: RefreshButtonProps) {
   const { onRefresh, localStorageKey } = props;

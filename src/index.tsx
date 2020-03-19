@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-//
 import * as serviceWorker from './serviceWorker';
-//
+//Redux
+import { Provider } from 'react-redux';
 import { store} from './redux/store';
 import App from './App';
-import {loadUser} from './redux/actions/';
+import {loadUser} from './redux/actions';
 
 import './index.scss';
 

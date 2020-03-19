@@ -1,10 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/*
 
-import './Loader.scss';
+*/
+import React from "react";
 
+import "./Loader.scss";
 
-export const Loader = React.memo(function Loader(props) {
+export interface LoaderProps {
+  loadingText?: string;
+  loading?: boolean; // This is needed so that this component can be used as a LoadingComponent in react table
+}
+
+export const Loader = React.memo(function Loader(props: LoaderProps) {
   const { loadingText, loading } = props;
   if (!loading) return null;
 
@@ -39,9 +45,3 @@ export const Loader = React.memo(function Loader(props) {
     </div>
   );
 });
-
-
-Loader.propTypes = {
-  loadingText: PropTypes.string,
-  loading: PropTypes.bool
-}
