@@ -39,6 +39,7 @@ export const login = ({ username, password }) => dispatch => {
       })
     })
     .catch(err => {
+      debugger
       dispatch(returnErrors(err.response.data, err.response.status, 'Login failed'))
       dispatch({
         type: 'LOGIN_FAILED'
@@ -53,6 +54,7 @@ export const logout = () => {
 }
 
 export const loadUser = () => (dispatch, getState) => {
+  debugger
   dispatch({ type: 'USER_LOADING' });
   const config = tokenConfig(getState)
   axios.get(apiConfig.authApiUrl + 'user', config)

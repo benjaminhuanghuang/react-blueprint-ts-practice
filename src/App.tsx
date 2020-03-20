@@ -7,10 +7,8 @@ import { Intent } from "@blueprintjs/core";
 //
 import "./App.scss";
 //
-import { HeaderActiveTab, HeaderBar, Loader } from "./components";
+import { HeaderActiveTab, HeaderBar, Loader, ProtectedRoute } from "./components";
 import { HomeView, UsersView, JobsView, LoginView } from "./views";
-
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 import { AppToaster } from "./singletons";
 

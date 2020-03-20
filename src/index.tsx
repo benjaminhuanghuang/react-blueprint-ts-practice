@@ -11,7 +11,7 @@ import './index.scss';
 //
 import App from './App';
 
-// store.dispatch(loadUser());
+store.dispatch(loadUser());
 
 ReactDOM.render(
    <Provider store={store}>
