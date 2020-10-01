@@ -4,7 +4,7 @@ import { Route, Redirect, RouteProps } from "react-router-dom";
 
 export interface ProtectedRouteProps extends RouteProps {
   isAuthed: boolean;
-  // authenticationPath: string;
+  // authenticationPath: string;    set the path of authentication
   // isAllowed: boolean;
   // restrictedPath: string;
 }
@@ -13,23 +13,20 @@ https://stackoverflow.com/questions/47747754/how-to-rewrite-the-protected-privat
 */
 
 // pass in props.component , props.isAuthed, props.rest
-const ProtectedRouteHOC: React.SFC<ProtectedRouteProps> = (props)  => {
-  if (props.isAuthed)
-  {
+const ProtectedRouteHOC: React.SFC<ProtectedRouteProps> = props => {
+  if (props.isAuthed) {
     // if (props.isAuthed && !props.isAllowed) {
     //   const redirectPath = props.restrictedPath;
     // }
     return <Route {...props} />;
-  }
-  else
-  {
-    const redirectPath = '/login'//props.authenticationPath;
+  } else {
+    const redirectPath = ""; //props.authenticationPath;
     const renderComponent = () => <Redirect to={{ pathname: redirectPath }} />;
     return <Route {...props} component={renderComponent} render={undefined} />;
   }
-}
+};
 
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state: any) => {
   return {
     isAuthed: state.auth.isAuthed
   };

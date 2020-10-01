@@ -1,23 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import * as serviceWorker from "./serviceWorker";
 //Redux
-import { Provider } from 'react-redux';
-import { store} from './redux/store';
+// import { Provider } from "react-redux";
+// import { store } from "./redux/store";
 
-import {loadUser} from './redux/actions';
+// import { loadUser } from "./redux/actions";
 
-import './index.scss';
+import "./index.scss";
+import './semantic-ui.custom.css';
 //
-import App from './App';
+import App from "./App";
 
-store.dispatch(loadUser());
+// store.dispatch(loadUser());
 
-ReactDOM.render(
-   <Provider store={store}>
-      <App />
-   </Provider> 
-   , document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

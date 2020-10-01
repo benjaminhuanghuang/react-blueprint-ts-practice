@@ -1,3 +1,3 @@
 export default {
-  authApiUrl: "https://service-management.apps.dev.npe.rms-internal.com/auth/v1"
+  authApiUrl: "https://api-euw1.rms-npe.com/sml/auth/v1"
 }
