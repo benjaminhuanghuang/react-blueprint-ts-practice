@@ -40,6 +40,7 @@ function App() {
               <Route exact path="/">
                 <Redirect to="/login" />
               </Route>
+              <Redirect to="/user-home" />
             </Switch>
         </div>
       </BrowserRouter>

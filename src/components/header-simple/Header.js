@@ -34,6 +34,9 @@ function Header() {
       </div>
       <div className="header__right">
         {!!token && (
+          <span>{token.username}</span>
+        )}
+        {!!token && (
           <button className="ui secondary button logout" onClick={logoutUser}>
             LOGOUT
           </button>
