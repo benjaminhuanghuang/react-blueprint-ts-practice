@@ -13,7 +13,7 @@ https://stackoverflow.com/questions/47747754/how-to-rewrite-the-protected-privat
 */
 
 // pass in props.component , props.isAuthed, props.rest
-const ProtectedRouteHOC: React.SFC<ProtectedRouteProps> = props => {
+const ProtectedRouteHOC: React.FunctionComponent<ProtectedRouteProps> = props => {
   if (props.isAuthed) {
     // if (props.isAuthed && !props.isAllowed) {
     //   const redirectPath = props.restrictedPath;

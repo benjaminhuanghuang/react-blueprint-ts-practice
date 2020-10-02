@@ -1,6 +1,6 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { useSession } from '../UserProvider';
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { useSession } from "../UserProvider";
 
 const AdminRoute = ({ component: Component, ...rest }) => {
   const { user, isAdmin } = useSession();

@@ -10,12 +10,15 @@ function LoginView(props) {
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setLoading] = useState(false);
 
+  // after login and get user information from API,
+  // redirect user to default page based on user's role
   const routeOnLogin = async (user) => {
-    const token = await user.getIdTokenResult();
-    if (token.claims.admin) {
-      props.history.push('/users');
+    //const token = await user.getIdTokenResult();
+    const isAdmin = false; // token.claims.admin
+    if (isAdmin) {
+      props.history.push('/user-home');
     } else {
-      props.history.push(`/profile/${user.uid}`);
+      props.history.push(`/admin-home`);
     }
   };
 
