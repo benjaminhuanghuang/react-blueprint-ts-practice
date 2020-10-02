@@ -18,7 +18,7 @@ function Header() {
 
   return (
     <nav className="header">
-      <h2 class="header__logo">React for Study</h2>
+      <h2 className="header__logo">React for Study</h2>
       <div className="header__nav">
         <Link className="header__nav__item" to="/admin-home">
           Admin

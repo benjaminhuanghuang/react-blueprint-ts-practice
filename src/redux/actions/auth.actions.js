@@ -39,7 +39,6 @@ export const login = ({ username, password }) => dispatch => {
       })
     })
     .catch(err => {
-      debugger
       dispatch(returnErrors(err.response.data, err.response.status, 'Login failed'))
       dispatch({
         type: 'LOGIN_FAILED'

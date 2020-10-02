@@ -31,6 +31,7 @@ function LoginView(props) {
     try {
       token = await login(data);
       setToken(token)
+      localStorage.setItem('RMS:AUTH_SERVICE:TOKENS', JSON.stringify(token));
       reset();
     } catch (error) {
       console.log(error);

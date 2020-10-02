@@ -10,7 +10,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) => {
         const id = props.match.params.id;
-
         if (!!token) {
           return <Component {...props} />;
         } else {
