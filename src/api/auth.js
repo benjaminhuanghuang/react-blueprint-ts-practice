@@ -8,9 +8,12 @@ export const signup = async ({ firstName, lastName, email, password }) => {
   return user;
 };
 
-export const logout = () => {
+export const logout = (token) => {
   // https://api-euw1.rms-npe.com/sml/auth/v1/Profile/signout
-  axios.post(apiConfig.authApiUrl + 'Profile/signout');
+  const config = {
+    headers: { Authorization: `Bearer ${token.accessToken}` }
+  };
+  axios.post(apiConfig.authApiUrl + 'Profile/signout', null, config);
 };
 
 export const login = async ({ email, password }) => {
@@ -22,8 +25,7 @@ export const login = async ({ email, password }) => {
 
   const response = await axios.post(apiConfig.authApiUrl + '/login/implicit', body)
    
-  console.log(response)
+
   // accessToken, 
-  const user_auth = response.data;
-  return user_auth;
+  return response.data;
 };

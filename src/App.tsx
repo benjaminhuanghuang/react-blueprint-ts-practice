@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import classNames from "classnames";
@@ -34,6 +34,7 @@ function App() {
             <Header></Header>
             <Switch>
               <PrivateRoute path="/user-home" component={UserHome} />
+              <PrivateRoute path="/jobs" component={JobsView} />
               <HomeRedirect path="/login" component={LoginView} />
               <AdminRoute exact path="/admin-home" component={AdminHome} />
               <Route exact path="/">

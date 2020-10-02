@@ -1,28 +1,22 @@
 
 import React, { useEffect, useState, useContext } from 'react';
 
-export const UserContext = React.createContext({
-  user: null,
-  loading: false,
-  isAdmin: false
-});
+export const UserContext = React.createContext();
 
 export const UserProvider = (props) => {
-  const [session, setSession] = useState({
-    user: {
-      name: 'ben'
-    },
-    loading: false,
-    isAdmin: false,
-  });
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
-    
+    const tokenData = localStorage.getItem('RMS:AUTH_SERVICE:TOKENS')
+    if(tokenData)
+    {
+      setToken(tokenData);
+    }
   }, []);
 
   return (
-    <UserContext.Provider value={session}>
-      {!session.loading && props.children}
+    <UserContext.Provider value={{token, setToken}}>
+      {props.children}
     </UserContext.Provider>
   );
 };

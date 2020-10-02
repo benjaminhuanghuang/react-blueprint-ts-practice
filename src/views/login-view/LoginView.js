@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { login } from '../../api/auth';
 import { Link } from 'react-router-dom';
+import { useSession } from '../../UserProvider';
+
 //
 import "./LoginView.scss" 
 
@@ -9,10 +11,11 @@ import "./LoginView.scss"
 function LoginView(props) {
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setLoading] = useState(false);
+  const {setToken} = useSession();
 
   // after login and get user information from API,
   // redirect user to default page based on user's role
-  const routeOnLogin = async (user) => {
+  const routeOnLogin = async (token) => {
     //const token = await user.getIdTokenResult();
     const isAdmin = false; // token.claims.admin
     if (isAdmin) {
@@ -23,17 +26,18 @@ function LoginView(props) {
   };
 
   const onSubmit = async (data) => {
-    let user;
+    let token;
     setLoading(true);
     try {
-      user = await login(data);
+      token = await login(data);
+      setToken(token)
       reset();
     } catch (error) {
       console.log(error);
     }
 
-    if (user) {
-      routeOnLogin(user);
+    if (token) {
+      routeOnLogin(token);
     } else {
       setLoading(false);
     }

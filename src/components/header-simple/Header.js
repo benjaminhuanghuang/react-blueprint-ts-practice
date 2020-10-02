@@ -8,10 +8,11 @@ import "./Header.scss";
 
 function Header() {
   const history = useHistory();
-  const { user } = useSession();
+  const { token, setToken } = useSession();
 
   const logoutUser = async () => {
-    await logout();
+    await logout(token);
+    setToken(null);
     history.push("/login");
   };
 
@@ -32,7 +33,7 @@ function Header() {
         </Link>
       </div>
       <div className="header__right">
-        {!!user && (
+        {!!token && (
           <button className="ui secondary button logout" onClick={logoutUser}>
             LOGOUT
           </button>
