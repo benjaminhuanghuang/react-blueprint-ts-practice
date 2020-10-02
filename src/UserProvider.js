@@ -1,7 +1,11 @@
 
 import React, { useEffect, useState, useContext } from 'react';
 
-export const UserContext = React.createContext();
+export const UserContext = React.createContext({
+  user: null,
+  loading: false,
+  isAdmin: false
+});
 
 export const UserProvider = (props) => {
   const [session, setSession] = useState({

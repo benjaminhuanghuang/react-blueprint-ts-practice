@@ -9,6 +9,8 @@ import "./App.scss";
 //
 import { HeaderActiveTab, HeaderBar, Loader, ProtectedRoute } from "./components";
 import { HomeView, UsersView, JobsView, LoginView } from "./views";
+import Header from "./components/header-simple/Header";
+
 
 import { AppToaster } from "./singletons";
 
@@ -16,16 +18,24 @@ import { Capabilities } from "./utils";
 
 // Context
 import { UserProvider } from "./UserProvider";
+// Routers
+import HomeRedirect from './router/HomeRedirect';
+import PrivateRoute from './router/PrivateRoute';
+import AdminRoute from './router/AdminRoute';
+// Page for tesing
+import AdminHome from "./views/AdminHome";
+import UserHome from "./views/UserHome";
 
 function App() {
   return (
     <UserProvider>
       <BrowserRouter>
         <div className="app-container">
+            <Header></Header>
             <Switch>
-              <Route path="/users" component={UsersView} />
-              <Route path="/jobs" component={JobsView} />
-              <Route path="/login" component={LoginView} />
+              <PrivateRoute path="/user-home" component={UserHome} />
+              <HomeRedirect path="/login" component={LoginView} />
+              <AdminRoute exact path="/admin-home" component={AdminHome} />
               <Route exact path="/">
                 <Redirect to="/login" />
               </Route>

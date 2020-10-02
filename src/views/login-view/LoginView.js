@@ -47,7 +47,7 @@ function LoginView(props) {
               <label>
                 Email
                 <input
-                  type="email"
+                  // type="email"  I don't want UI validation here
                   name="email"
                   placeholder="Email"
                   ref={register}
